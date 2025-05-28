@@ -6,27 +6,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <title>잔쿡 메인</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <!-- 간단한 JS (버튼 클릭 시 해당 하위카테고리만 보여주기) -->
     <script>
-        function toggleSub(id) {
-            const subs = document.querySelectorAll('.subcategory');
-            subs.forEach(sub => sub.style.display = 'none'); // ✅ 모두 숨기고
-            const target = document.getElementById(id);
-            if (target) {
-                target.style.display = 'block';              // ✅ 클릭된 것만 표시
+        $(document).ready(function() {
+            // 하위 카테고리 토글 함수
+            window.toggleSub = function(id) {
+            $('.subcategory').hide();  // 모두 숨기기
+            $('#' + id).show();        // 클릭된 것만 보이기
+            };
+
+            // 체크박스 클릭 시 ingredients.html로 이동
+            $('.subcategory input[type="checkbox"]').change(function() {
+            if ($(this).is(':checked')) {
+                window.location.href = 'ingredients.html';
             }
-        }
-        document.addEventListener('DOMContentLoaded', () => {
-            const checkboxes = document.querySelectorAll('.subcategory input[type="checkbox"]');
-            checkboxes.forEach(cb => {
-                cb.addEventListener('change', () => {
-                    // 체크 상태일 때만 이동 (선택적으로)
-                    if (cb.checked) {
-                        window.location.href = 'ingredients.html';
-                    }
-                });
             });
         });
+
+                // 슬라이더 기능
+        document.addEventListener('DOMContentLoaded', function() {
+                const categoryItems = document.querySelectorAll('.category-item'); /* 카테고리 아이템 선택 */
+                
+                categoryItems.forEach(item => {
+                    item.addEventListener('mouseenter', function() {
+                        this.classList.add('active'); /* 마우스가 들어올 때 active 클래스 추가 */
+                    });
+                    item.addEventListener('mouseleave', function() {
+                        this.classList.remove('active'); /* 마우스가 나가면 active 클래스 제거 */
+                    });
+                });
+                let currentIndex = 0; /* 현재 슬라이드 인덱스 초기화 */
+                const slides = document.querySelectorAll('.slider-slide'); /* 슬라이드 요소 선택 */
+                const dots = document.querySelectorAll('.slider-nav button'); /* 슬라이더 네비게이션 버튼 선택 */
+                const totalSlides = slides.length; /* 전체 슬라이드 개수 */
+
+                function showSlide(index) { /* 특정 슬라이드 표시 함수 */
+                    const newTransformValue = -index * 100;
+                    document.querySelector('.slider-wrapper').style.transform = `translateX(${newTransformValue}%)`; /* 슬라이드 이동 */
+                    dots.forEach(dot => dot.classList.remove('active')); /* 모든 네비게이션 버튼에서 active 클래스 제거 */
+                    dots[index].classList.add('active'); /* 현재 슬라이드 네비게이션 버튼에 active 클래스 추가 */
+                }
+
+                function nextSlide() { /* 다음 슬라이드로 이동하는 함수 */
+                    currentIndex = (currentIndex + 1) % totalSlides; /* 인덱스 증가, 마지막 슬라이드이면 처음으로 */
+                    showSlide(currentIndex);
+                }
+
+                function prevSlide() { /* 이전 슬라이드로 이동하는 함수 */
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; /* 인덱스 감소, 처음 슬라이드이면 마지막으로 */
+                    showSlide(currentIndex);
+                }
+
+                dots.forEach((dot, index) => { /* 각 네비게이션 버튼에 이벤트 리스너 추가 */
+                    dot.addEventListener('click', () => showSlide(index));
+                });
+
+                setInterval(nextSlide, 3000); // 3초마다 슬라이드 변경
+                showSlide(currentIndex); /* 초기 슬라이드 표시 */
+            });
+
     </script>
 </head>
 
@@ -51,55 +90,72 @@
                 <li><a href="#">종류별 음식</a></li>
                 <li><a href="ingredients.html">재료로 검색</a></li>
                 <li><a href="#">초보용 음식</a></li>
-                <li><a href="#">조리 시간별</a></li>
+                <li><a href="cookingTime.html">조리 시간별</a></li>
             </ul>
         </nav>
         <!-- 광고 배너 -->
-        <div class="banner">광고 배너</div>
+               <!-- 광고 슬라이더 섹션 -->
+        <section class="slider-container">
+            <div class="slider-wrapper">
+                <div class="slider-slide">
+                    <img src="icon-image/002-beef.png" alt="Advertisement 1"> <!-- 광고 배너 이미지 1 -->
+                </div>
+                <div class="slider-slide">
+                    <img src="icon-image/002-beef.png" alt="Advertisement 2"> <!-- 광고 배너 이미지 2 -->
+                </div>
+                <div class="slider-slide">
+                    <img src="icon-image/002-beef.png" alt="Advertisement 3"> <!-- 광고 배너 이미지 3 -->
+                </div>
+            </div>
+            <div class="slider-nav"> <!-- 슬라이더 네비게이션 -->
+                <button></button> <!-- 네비게이션 버튼 1 -->
+                <button></button> <!-- 네비게이션 버튼 2 -->
+                <button></button> <!-- 네비게이션 버튼 3 -->
+            </div>
+        </section>
 
         <!-- 재료 카테고리 (원형 아이콘 형태) -->
-        <div class="category-icons">
-            <button onclick="toggleSub('meat')" href="ingredients.html">
-                <img src="icon-image/002-beef.png" alt="소고기"><br>
-                <span>소고기</span>
-            </button>
-            <button onclick="toggleSub('pork')">
-                <img src="icon-image/003-pork.png" alt="돼지고기"><br>
-                <span>돼지고기</span>
-            </button>
-            <button onclick="toggleSub('chicken')">
-                <img src="icon-image/001-hen.png" alt="닭고기"><br>
-                <span>닭고기</span>
-            </button>
-            <button onclick="toggleSub('veggie')">
-                <img src="icon-image/005-vegetable.png" alt="채소류"><br>
-                <span>채소류</span>
-            </button>
-            <button onclick="toggleSub('seafood')">
-                <img src="icon-image/008-seafood.png" alt="해물류"><br>
-                <span>해물류</span>
-            </button>
-            <button onclick="toggleSub('noodle')">
-                <img src="icon-image/spaghetti.png" alt="면류"><br>
-                <span>면류</span>
-            </button>
-            <button onclick="toggleSub('grain')">
-                <img src="icon-image/bread.png" alt="곡류"><br>
-                <span>곡류</span>
-            </button>
-            <button onclick="toggleSub('dairy')">
-                <img src="icon-image/010-dairy-products.png" alt="유제품"><br>
-                <span>유제품</span>
-            </button>
-            <button onclick="toggleSub('mushroom')">
-                <img src="icon-image/006-mushrooms.png" alt="버섯류"><br>
-                <span>버섯류</span>
-            </button>
-            <button onclick="toggleSub('etc')">
-                <img src="icon-image/007-seasoning.png" alt="기타"><br>
-                <span>기타</span>
-            </button>
+        <div class="category-box">
+            <div class="category-icons">
+                <button onclick="toggleSub('meat')" href="ingredients.html">
+                    <img src="icon-image/002-beef.png" alt="소고기">
+                    <span>소고기</span>
+                </button>
+                <button onclick="toggleSub('pork')">
+                    <img src="icon-image/003-pork.png" alt="돼지고기">
+                    <span>돼지고기</span>
+                </button>
+                <button onclick="toggleSub('chicken')">
+                    <img src="icon-image/001-hen.png" alt="닭고기">
+                    <span>닭고기</span>
+                </button>
+                <button onclick="toggleSub('veggie')">
+                    <img src="icon-image/005-vegetable.png" alt="채소류">
+                    <span>채소류</span>
+                </button>
+                <button onclick="toggleSub('seafood')">
+                    <img src="icon-image/008-seafood.png" alt="해물류">
+                    <span>해물류</span>
+                </button>
+                <button onclick="toggleSub('grain')">
+                    <img src="icon-image/bread.png" alt="곡류">
+                    <span>곡류</span>
+                </button>
+                <button onclick="toggleSub('dairy')">
+                    <img src="icon-image/010-dairy-products.png" alt="유제품">
+                    <span>유제품</span>
+                </button>
+                <button onclick="toggleSub('mushroom')">
+                    <img src="icon-image/006-mushrooms.png" alt="버섯류">
+                    <span>버섯류</span>
+                </button>
+                <button onclick="toggleSub('etc')">
+                    <img src="icon-image/007-seasoning.png" alt="기타">
+                    <span>기타</span>
+                </button>
+            </div>
         </div>
+
 
 
         <!-- 상세 재료 선택창 -->
@@ -157,14 +213,6 @@
             <label><input type="checkbox"> 문어</label>
             <label><input type="checkbox"> 게</label>
         </div>
-        <div class="subcategory" id="noodle">
-            <div class="subcategory-title">면류</div>
-            <label><input type="checkbox"> 우동면</label>
-            <label><input type="checkbox"> 스파게티면</label>
-            <label><input type="checkbox"> 라면사리</label>
-            <label><input type="checkbox"> 소면</label>
-            <label><input type="checkbox"> 냉면사리</label>
-        </div>
         <div class="subcategory" id="dairy">
             <div class="subcategory-title">유제품</div>
             <label><input type="checkbox"> 우유</label>
@@ -183,6 +231,11 @@
             <label><input type="checkbox"> 현미</label>
             <label><input type="checkbox"> 찹쌀</label>
             <label><input type="checkbox"> 빵</label>
+            <label><input type="checkbox"> 우동면</label>
+            <label><input type="checkbox"> 스파게티면</label>
+            <label><input type="checkbox"> 라면사리</label>
+            <label><input type="checkbox"> 소면</label>
+            <label><input type="checkbox"> 냉면사리</label>
         </div>
 
         <div class="subcategory" id="mushroom">
@@ -224,7 +277,8 @@
                             </a>
                         </div>
                         <div class="food-card">
-                            <img src="food-image/grilled-steak-with-salt-herbs-grilled-tomato-served-wooden-board.jpg" alt="음식2">
+                            <img src="food-image/grilled-steak-with-salt-herbs-grilled-tomato-served-wooden-board.jpg"
+                                alt="음식2">
                             <p>스테이크</p>
                         </div>
                         <div class="food-card">
@@ -252,6 +306,25 @@
                             <img src="food-image/tasty-appetizing-classic-italian-spaghetti-pasta-with-tomato-sauce-cheese-parmesan-basil-plate-ingredients-cooking-pasta-white-marble-table.jpg"
                                 alt="음식8">
                             <p>토마토 파스타</p>
+                        </div>
+                        <div class="food-card">
+                            <a href="recipe.html">
+                                <img src="food-image/kimchi-rice.jpg" alt="음식1">
+                                <p>김치볶음밥</p>
+                            </a>
+                        </div>
+                        <div class="food-card">
+                            <img src="food-image/grilled-steak-with-salt-herbs-grilled-tomato-served-wooden-board.jpg"
+                                alt="음식2">
+                            <p>스테이크</p>
+                        </div>
+                        <div class="food-card">
+                            <img src="food-image/sauteed-mushrooms-with-pumpkin-sweet-pepper.jpg" alt="음식3">
+                            <p>호박버섯 볶음</p>
+                        </div>
+                        <div class="food-card">
+                            <img src="food-image/soybean-soup.jpg" alt="음식4">
+                            <p>매콤 된장찌개</p>
                         </div>
                     </div>
                 </section>
@@ -282,7 +355,62 @@
     </div>
 
 
-    <footer class="footer">잔쿡</footer>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div>
+                    <h4>서비스</h4>
+                    <ul>
+                        <li>공지사항</li>
+                        <li>자주 묻는 질문</li>
+                        <li>계정 일시정지</li>
+                        <li>고객센터</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>회사</h4>
+                    <ul>
+                        <li>회사 소개</li>
+                        <li>채용</li>
+                        <li>기술 블로그</li>
+                        <li>블로그</li>
+                        <li>광고</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>문의</h4>
+                    <ul>
+                        <li>광고 문의</li>
+                        <li>인증 사업 문의</li>
+                        <li>마케팅 · PR</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>고객센터</h4>
+                    <ul>
+                        <li>전화: 031-249- (24시간 연중무휴)</li>
+                        <li>이메일(고객전용): support@jancook.com</li>
+                        <li>민원 접수</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-info">
+                <p><strong>(주)잔쿡</strong></p>
+                <p>사업자 등록번호: 104-98-01782 | 대표: 이동근</p>
+                <p>주소: 경기 수원시 영통구 광교산로 154-42</p>
+                <p>서비스 이용약관 | 개인정보 처리방침 | 마이데이터 서비스 이용약관</p>
+            </div>
+
+            <div class="footer-social">
+                <a href="#"><img src="icon-image/001-facebook.png" alt="Facebook" /></a>
+                <a href="#"><img src="icon-image/003-twitter.png" alt="Twitter" /></a>
+                <a href="#"><img src="icon-image/002-instagram.png" alt="Instagram" /></a>
+            </div>
+        </div>
+    </footer>
+
 </body>
 
 </html>
