@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>재료로 검색</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css"/>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <style>
         nav {
             margin-bottom: 1rem;
@@ -14,9 +15,12 @@
         .search-result {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            /* 한 줄에 4개 */
             gap: 1.5rem;
             margin-top: 1rem;
+        }
+
+        .catogory-box {
+            margin-bottom: 1rem;
         }
 
         .food-card {
@@ -30,7 +34,7 @@
 
         .food-card img {
             width: 100%;
-            height: 120px;
+            height: 150px;
             object-fit: cover;
             margin-bottom: 0.5rem;
         }
@@ -39,155 +43,77 @@
             margin: 0;
             font-weight: 500;
         }
+
+        .no-result {
+            grid-column: 1 / -1;
+            text-align: center;
+            font-size: 1rem;
+            color: gray;
+            margin-top: 2rem;
+        }
     </style>
     <script>
+        $(document).ready(function () {
+            $(document).ready(function () {
+                $('.menu-toggle').click(function () {
+                    $('#mobileMenu').toggleClass('show');
+                });
+            });
+        })
+
         function toggleSub(id) {
             const subs = document.querySelectorAll('.subcategory');
-            subs.forEach(sub => sub.style.display = 'none'); //
+            subs.forEach(sub => sub.style.display = 'none');
             const target = document.getElementById(id);
             if (target) {
                 target.style.display = 'block';
             }
         }
-        <!-- [2] JavaScript 수정 -->
 
-        // 음식 정보 객체
         const foodData = [
-            {
-                name: "김치볶음밥",
-                ingredients: ["밥", "김치", "앞다리살"],
-                img: "food-image/kimchi-rice.jpg",
-                link: "recipe.html"
-            },
-            {
-                name: "된장찌개",
-                ingredients: ["된장", "두부", "채소류"],
-                img: "food-image/soybean-soup.jpg",
-                link: "recipe.html"
-            },
-            {
-                name: "스테이크",
-                ingredients: ["등심", "안심"],
-                img: "food-image/steak.jpg",
-                link: "recipe.html"
-            },
-            {
-                name: "호박버섯 볶음",
-                ingredients: ["호박", "버섯"],
-                img: "food-image/sauteed-mushrooms-with-pumpkin-sweet-pepper.jpg",
-                link: "recipe.html"
-            },
-            {
-                name: "제육볶음",
-                ingredients: ["목살", "고추장", "양파", "마늘", "간장장"],
-                img: "food-image/pepper-paste-fork.jpg",
-                link: "recipe.html"
-            },
-            {
-                name: "계란찜",
-                ingredients: ["계란", "소금", "대파"],
-                img: "food-image/hangug-eumsig-gyelan-jjim-ttoneun-bansug-gyelan.jpg",
-                link: "recipe.html"
-            },
-            {
-                name: "떡볶이",
-                ingredients: ["떡", "고추장", "어묵", "대파"],
-                img: "food-image/beullaeg-bodeu-baegyeong-e-chijeu-tokbokki-hangug-jeontong-eumsig-jeomsim-yoli.jpg",
-                link: "recipe.html"
-            },
-            {
-                name: "계란말이",
-                ingredients: ["계란", "당근", "양파", "소금"],
-                img: "food-image/egg-cake.png",
-                link: "recipe.html"
-            },
-            {
-                name: "토마토 파스타",
-                ingredients: ["스파게티면", "토마토소스", "마늘", "양파", "치즈"],
-                img: "food-image/tasty-appetizing-classic-italian-spaghetti-pasta-with-tomato-sauce-cheese-parmesan-basil-plate-ingredients-cooking-pasta-white-marble-table.jpg",
-                link: "recipe.html"
-            },
-            {
-                name: "돼지고기 볶음 스파게티",
-                ingredients: ["앞다리살", "스파게티면", "양파", "간장", "고추기름"],
-                img: "food-image/stir-fry-spaghetti-put-pork-bowl.jpg",
-                link: "recipe.html"
-            },
-            {
-                name: "참치마요덮밥",
-                ingredients: ["밥", "참치캔", "마요네즈", "간장", "김"],
-                img: "food-image/mas-issneun-chamchi-lesipi.jpg",
-                link: "recipe.html"
-            },
-            {
-                name: "해물파전",
-                ingredients: ["부침가루", "오징어", "새우", "대파", "계란"],
-                img: "food-image/seafood-pancake.png",
-                link: "recipe.html"
-            },
-            {
-                name: "김치찌개",
-                ingredients: ["김치", "두부", "목살", "앞다리살", "대파"],
-                img: "food-image/kimchi-stew.jpeg",
-                link: "recipe.html"
-            },
-            {
-                name: "오징어 볶음",
-                ingredients: ["오징어", "고추장", "양파", "당근"],
-                img: "food-image/stir-fried-squid.png",
-                link: "recipe.html"
-            },
-            {
-                name: "버섯 리조또",
-                ingredients: ["리조또 쌀", "버섯", "양파", "치킨스톡"],
-                img: "food-image/mushroom-risotto.png",
-                link: "recipe.html"
-            },
-            {
-                name: "해물짬뽕",
-                ingredients: ["면", "해물", "고추기름", "양파"],
-                img: "food-image/seafood-jjamppong.png",
-                link: "recipe.html"
-            },
-            {
-                name: "닭갈비",
-                ingredients: ["닭다리살", "고추장", "양배추", "당근"],
-                img: "food-image/spicy-chicken-stew.png",
-                link: "recipe.html"
-            },
-            {
-                name: "부대찌개",
-                ingredients: ["햄", "소세지", "두부", "김치"],
-                img: "food-image/army-stew.png",
-                link: "recipe.html"
-            },
-            {
-                name: "잡채",
-                ingredients: ["당면", "소고기", "당근", "버섯"],
-                img: "food-image/japchae.png",
-                link: "recipe.html"
-            },
-            {
-                name: "미역국",
-                ingredients: ["미역", "소고기", "간장"],
-                img: "food-image/seaweed-soup.jpg",
-                link: "recipe.html"
-            }
+            { name: "김치볶음밥", ingredients: ["밥", "김치", "앞다리살"], img: "food-image/kimchi-rice.jpg", link: "recipe.html" },
+            { name: "된장찌개", ingredients: ["된장", "두부", "채소류"], img: "food-image/soybean-soup.jpg", link: "recipe.html" },
+            { name: "스테이크", ingredients: ["등심", "안심"], img: "food-image/steak.jpg", link: "recipe.html" },
+            { name: "호박버섯 볶음", ingredients: ["호박", "버섯"], img: "food-image/sauteed-mushrooms-with-pumpkin-sweet-pepper.jpg", link: "recipe.html" },
+            { name: "제육볶음", ingredients: ["목살", "고추장", "양파", "마늘", "간장장"], img: "food-image/pepper-paste-fork.jpg", link: "recipe.html" },
+            { name: "계란찜", ingredients: ["계란", "소금", "대파"], img: "food-image/hangug-eumsig-gyelan-jjim-ttoneun-bansug-gyelan.jpg", link: "recipe.html" },
+            { name: "떡볶이", ingredients: ["떡", "고추장", "어묵", "대파"], img: "food-image/beullaeg-bodeu-baegyeong-e-chijeu-tokbokki-hangug-jeontong-eumsig-jeomsim-yoli.jpg", link: "recipe.html" },
+            { name: "계란말이", ingredients: ["계란", "당근", "양파", "소금"], img: "food-image/egg-cake.png", link: "recipe.html" },
+            { name: "토마토 파스타", ingredients: ["스파게티면", "토마토소스", "마늘", "양파", "치즈"], img: "food-image/tasty-appetizing-classic-italian-spaghetti-pasta-with-tomato-sauce-cheese-parmesan-basil-plate-ingredients-cooking-pasta-white-marble-table.jpg", link: "recipe.html" },
+            { name: "돼지고기 볶음 스파게티", ingredients: ["앞다리살", "스파게티면", "양파", "간장", "고추기름"], img: "food-image/stir-fry-spaghetti-put-pork-bowl.jpg", link: "recipe.html" },
+            { name: "참치마요덮밥", ingredients: ["밥", "참치캔", "마요네즈", "간장", "김"], img: "food-image/mas-issneun-chamchi-lesipi.jpg", link: "recipe.html" },
+            { name: "해물파전", ingredients: ["부침가루", "오징어", "새우", "대파", "계란"], img: "food-image/seafood-pancake.png", link: "recipe.html" },
+            { name: "김치찌개", ingredients: ["김치", "두부", "목살", "앞다리살", "대파"], img: "food-image/kimchi-stew.jpeg", link: "recipe.html" },
+            { name: "오징어 볶음", ingredients: ["오징어", "고추장", "양파", "당근"], img: "food-image/stir-fried-squid.png", link: "recipe.html" },
+            { name: "버섯 리조또", ingredients: ["리조또 쌀", "버섯", "양파", "치킨스톡"], img: "food-image/mushroom-risotto.png", link: "recipe.html" },
+            { name: "해물짬뽕", ingredients: ["면", "해물", "고추기름", "양파"], img: "food-image/seafood-jjamppong.png", link: "recipe.html" },
+            { name: "닭갈비", ingredients: ["닭다리살", "고추장", "양배추", "당근"], img: "food-image/spicy-chicken-stew.png", link: "recipe.html" },
+            { name: "부대찌개", ingredients: ["햄", "소세지", "두부", "김치"], img: "food-image/army-stew.png", link: "recipe.html" },
+            { name: "잡채", ingredients: ["당면", "소고기", "당근", "버섯"], img: "food-image/japchae.png", link: "recipe.html" },
+            { name: "미역국", ingredients: ["미역", "소고기", "간장"], img: "food-image/seaweed-soup.jpg", link: "recipe.html" }
         ];
 
-
-        // 체크된 재료로 음식 추천하기
         function filterRecipes() {
             const selected = Array.from(document.querySelectorAll('.subcategory input:checked'))
                 .map(input => input.parentElement.textContent.trim());
+
+            const resultBox = document.getElementById("search-result");
+            const placeholder = document.getElementById("ingredient-placeholder");
+            resultBox.innerHTML = "";
+
+            if (selected.length === 0) {
+                placeholder.style.display = "block";
+                return;
+            } else {
+                placeholder.style.display = "none";
+            }
+
             const matched = foodData.filter(food =>
                 selected.every(sel => food.ingredients.includes(sel))
             );
 
-            const resultBox = document.getElementById("search-result");
-            resultBox.innerHTML = ""; // 초기화
             if (matched.length === 0) {
-                resultBox.innerHTML = "<br><p>조건에 맞는 음식이 없습니다.</p>";
+                resultBox.innerHTML = "<div class='no-result'>조건에 맞는 음식이 없습니다.</div>";
                 return;
             }
 
@@ -203,18 +129,12 @@
             });
         }
 
-        // 모든 체크박스에 이벤트 리스너 추가
         window.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.subcategory input[type=checkbox]').forEach(chk => {
                 chk.addEventListener('change', filterRecipes);
             });
         });
-        // 재료 선택 안내 문구 숨기기
-        const placeholder = document.getElementById("ingredient-placeholder");
-        if (placeholder) placeholder.style.display = selected.length ? "none" : "block";
-
     </script>
-
 </head>
 
 <body>
@@ -229,6 +149,15 @@
                 <a href="/signup" title="회원가입"><img src="icon-image/014-add.png" alt="회원가입"></a>
                 <a href="/login" title="로그인"><img src="icon-image/015-user-1.png" alt="로그인"></a>
             </div>
+            <button class="menu-toggle">☰</button>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="/login">로그인</a>
+                <a href="/signup">회원가입</a>
+                <a href="#">종류별 음식</a>
+                <a href="ingredients.html">재료로 검색</a>
+                <a href="#">초보용 음식</a>
+                <a href="cookingTime.html">조리 시간별</a>
+            </div>
         </header>
 
         <!-- 메뉴 바 -->
@@ -241,47 +170,45 @@
             </ul>
         </nav>
         <!-- 재료 카테고리 (원형 아이콘 형태) -->
-        <div class="category-icons">
-            <button onclick="toggleSub('meat')">
-                <img src="icon-image/002-beef.png" alt="소고기"><br>
-                <span>소고기</span>
-            </button>
-            <button onclick="toggleSub('pork')">
-                <img src="icon-image/003-pork.png" alt="돼지고기"><br>
-                <span>돼지고기</span>
-            </button>
-            <button onclick="toggleSub('chicken')">
-                <img src="icon-image/001-hen.png" alt="닭고기"><br>
-                <span>닭고기</span>
-            </button>
-            <button onclick="toggleSub('veggie')">
-                <img src="icon-image/005-vegetable.png" alt="채소류"><br>
-                <span>채소류</span>
-            </button>
-            <button onclick="toggleSub('seafood')">
-                <img src="icon-image/008-seafood.png" alt="해물류"><br>
-                <span>해물류</span>
-            </button>
-            <button onclick="toggleSub('noodle')">
-                <img src="icon-image/spaghetti.png" alt="면류"><br>
-                <span>면류</span>
-            </button>
-            <button onclick="toggleSub('noodle')">
-                <img src="icon-image/bread.png" alt="곡류"><br>
-                <span>곡류</span>
-            </button>
-            <button onclick="toggleSub('dairy')">
-                <img src="icon-image/010-dairy-products.png" alt="유제품"><br>
-                <span>유제품</span>
-            </button>
-            <button onclick="toggleSub('mushroom')">
-                <img src="icon-image/006-mushrooms.png" alt="버섯류"><br>
-                <span>버섯류</span>
-            </button>
-            <button onclick="toggleSub('etc')">
-                <img src="icon-image/007-seasoning.png" alt="기타타"><br>
-                <span>기타</span>
-            </button>
+        <div class="category-box">
+            <div class="category-icons">
+                <button onclick="toggleSub('meat')">
+                    <img src="icon-image/002-beef.png" alt="소고기"><br>
+                    <span>소고기</span>
+                </button>
+                <button onclick="toggleSub('pork')">
+                    <img src="icon-image/003-pork.png" alt="돼지고기"><br>
+                    <span>돼지고기</span>
+                </button>
+                <button onclick="toggleSub('chicken')">
+                    <img src="icon-image/001-hen.png" alt="닭고기"><br>
+                    <span>닭고기</span>
+                </button>
+                <button onclick="toggleSub('veggie')">
+                    <img src="icon-image/005-vegetable.png" alt="채소류"><br>
+                    <span>채소류</span>
+                </button>
+                <button onclick="toggleSub('seafood')">
+                    <img src="icon-image/008-seafood.png" alt="해물류"><br>
+                    <span>해물류</span>
+                </button>
+                <button onclick="toggleSub('grain')">
+                    <img src="icon-image/bread.png" alt="곡류"><br>
+                    <span>곡류</span>
+                </button>
+                <button onclick="toggleSub('dairy')">
+                    <img src="icon-image/010-dairy-products.png" alt="유제품"><br>
+                    <span>유제품</span>
+                </button>
+                <button onclick="toggleSub('mushroom')">
+                    <img src="icon-image/006-mushrooms.png" alt="버섯류"><br>
+                    <span>버섯류</span>
+                </button>
+                <button onclick="toggleSub('etc')">
+                    <img src="icon-image/007-seasoning.png" alt="기타타"><br>
+                    <span>기타</span>
+                </button>
+            </div>
         </div>
 
         <!-- 상세 재료 선택창 -->
@@ -347,14 +274,6 @@
             <label><input type="checkbox"> 문어</label>
             <label><input type="checkbox"> 게</label>
         </div>
-        <div class="subcategory" id="noodle">
-            <div class="subcategory-title">면류</div>
-            <label><input type="checkbox"> 우동면</label>
-            <label><input type="checkbox"> 스파게티면</label>
-            <label><input type="checkbox"> 라면사리</label>
-            <label><input type="checkbox"> 소면</label>
-            <label><input type="checkbox"> 냉면사리</label>
-        </div>
         <div class="subcategory" id="dairy">
             <div class="subcategory-title">유제품</div>
             <label><input type="checkbox"> 우유</label>
@@ -373,6 +292,11 @@
             <label><input type="checkbox"> 현미</label>
             <label><input type="checkbox"> 찹쌀</label>
             <label><input type="checkbox"> 빵</label>
+            <label><input type="checkbox"> 우동면</label>
+            <label><input type="checkbox"> 스파게티면</label>
+            <label><input type="checkbox"> 라면사리</label>
+            <label><input type="checkbox"> 소면</label>
+            <label><input type="checkbox"> 냉면사리</label>
         </div>
 
         <div class="subcategory" id="mushroom">
@@ -398,12 +322,65 @@
             <label><input type="checkbox"> 고춧가루</label>
             <label><input type="checkbox"> 식용유</label>
         </div>
-        <!-- [1] 검색 결과 표시 영역 추가 -->
+
         <h2>검색 결과</h2>
         <p id="ingredient-placeholder" style="color:gray; font-size:0.9rem; margin-top:0.5rem;">※ 재료를 골라주세요!</p>
-        <div id="search-result" class="search-result">
-            <!-- 여기에 추천 음식 카드가 렌더링됨 -->
-        </div>
+        <div id="search-result" class="search-result"></div>
+
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-top">
+                    <div>
+                        <h4>서비스</h4>
+                        <ul>
+                            <li>공지사항</li>
+                            <li>자주 묻는 질문</li>
+                            <li>계정 일시정지</li>
+                            <li>고객센터</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>회사</h4>
+                        <ul>
+                            <li>회사 소개</li>
+                            <li>채용</li>
+                            <li>기술 블로그</li>
+                            <li>블로그</li>
+                            <li>광고</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>문의</h4>
+                        <ul>
+                            <li>광고 문의</li>
+                            <li>인증 사업 문의</li>
+                            <li>마케팅 · PR</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>고객센터</h4>
+                        <ul>
+                            <li>전화: 031-249- (24시간 연중무휴)</li>
+                            <li>이메일(고객전용): support@jancook.com</li>
+                            <li>민원 접수</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-info">
+                    <p><strong>(주)잔쿡</strong></p>
+                    <p>사업자 등록번호: 104-98-01782 | 대표: 이동근</p>
+                    <p>주소: 경기 수원시 영통구 광교산로 154-42</p>
+                    <p>서비스 이용약관 | 개인정보 처리방침 | 마이데이터 서비스 이용약관</p>
+                </div>
+
+                <div class="footer-social">
+                    <a href="#"><img src="icon-image/001-facebook.png" alt="Facebook" /></a>
+                    <a href="#"><img src="icon-image/003-twitter.png" alt="Twitter" /></a>
+                    <a href="#"><img src="icon-image/002-instagram.png" alt="Instagram" /></a>
+                </div>
+            </div>
+        </footer>
 </body>
 
 </html>
