@@ -265,6 +265,14 @@ nav {
     font-size: 0.95rem;
 }
 
+
+.search-result {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
 /* 추천 영역 */
 .recommendation-section {
     width: 100%;
@@ -282,6 +290,7 @@ nav {
     font-size: 1.3rem;
     font-weight: bold;
     margin-bottom: 1rem;
+    padding-top: 2rem;
     color: #333;
 }
 
