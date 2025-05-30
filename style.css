@@ -1,5 +1,3 @@
-
-/* 공통 초기화 */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -15,7 +13,7 @@ body {
 
 .container {
     max-width: 1200px;
-    margin: auto;
+    margin: 0 auto;
     padding: 2rem;
     position: relative;
 }
@@ -23,13 +21,13 @@ body {
 /* Header */
 header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
     background: #FDFCFA;
     border-bottom: 1px solid #ddd;
     position: relative;
 }
+
 
 .logo {
     font-size: 1.6rem;
@@ -73,7 +71,7 @@ header {
     background-color: #e0e0e0;
 }
 
-/* 메뉴 토글 버튼 - 모바일 전용 */
+/* 메뉴 토글 버튼 */
 .menu-toggle {
     display: none;
     padding: 0.5rem;
@@ -82,7 +80,6 @@ header {
     cursor: pointer;
 }
 
-/* 모바일 전용 메뉴 패널 */
 .mobile-menu {
     display: none;
     flex-direction: column;
@@ -107,10 +104,9 @@ header {
 }
 
 
-/* 모바일 화면일 때만 스타일 변화 */
 
 
-/* Navigation */
+/* Nav */
 nav {
     background-color: #EFB37F;
     border-radius: 6px 6px 0 0;
@@ -140,28 +136,25 @@ nav {
     color: #ffcc00;
 }
 
-/* 배너 */
+/* 광고 배너 */
 
 .slider-container {
-    /* 슬라이더 컨테이너 스타일 */
     position: relative;
     width: 100%;
     max-width: 1200px;
     margin: 1px auto;
     height: 300px;
-    /* 광고 배너 높이 */
     overflow: hidden;
     background-color: #f0f0f0;
 }
 
 .slider-wrapper {
-    /* 슬라이더 래퍼 스타일 */
     display: flex;
     transition: transform 0.5s ease-in-out;
     height: 100%;
 }
-.slider-wrapper >img{
-    /* 슬라이더 이미지 스타일 */
+
+.slider-wrapper>img {
     width: 100%;
     height: 100%;
 
@@ -170,21 +163,20 @@ nav {
 .slider-slide {
     min-width: 100%;
     box-sizing: border-box;
-    padding: 0; /* 기존 10px 20px 제거 */
-    overflow: hidden; /* 넘치는 영역 방지 */
+    padding: 0;
+    overflow: hidden;
 }
 
 
 .slider-slide img {
-    width: 100%;                     /* 부모에 맞게 꽉 채움 */
+    width: 100%;
     height: 90%;
-    object-fit: cover;              /* 이미지 비율 유지하면서 채우기 */
+    object-fit: cover;
     display: block;
 }
 
 
 .slider-nav {
-    /* 슬라이더 네비게이션 스타일 */
     position: absolute;
     bottom: 10px;
     left: 50%;
@@ -194,7 +186,6 @@ nav {
 }
 
 .slider-nav button {
-    /* 슬라이더 네비게이션 버튼 스타일 */
     border: none;
     background-color: #6D8B12;
     border-radius: 50%;
@@ -205,13 +196,11 @@ nav {
 }
 
 .slider-nav button.active {
-    /* 활성화된 슬라이더 네비게이션 버튼 스타일 */
     background-color: #6D8B12;
-    /* 버튼 활성화 시 초록색으로 변경 */
 }
 
 
-/* 카테고리 */
+/* 재료 선택 카테고리 */
 
 .category-box {
     margin-top: 2rem;
@@ -262,7 +251,7 @@ nav {
     border-color: #999;
 }
 
-/* 서브카테고리 */
+/* 세부 재료 선택 카테고리 */
 .subcategory {
     display: none;
     border: 1px solid #ccc;
@@ -283,7 +272,7 @@ nav {
     margin-top: 1rem;
 }
 
-/* 추천 영역 */
+/* 추천 부분 */
 .recommendation-section {
     width: 100%;
 }
@@ -423,24 +412,23 @@ nav {
 
     .menu-toggle {
         display: flex;
-        position: absolute;
         top: 50%;
         right: 1rem;
-        transform: translateY(-50%);
         background: none;
         border: none;
-        font-size: 1.8rem;
+        font-size: 1.3rem;
         color: #333;
         cursor: pointer;
         z-index: 2000;
     }
 
+
+
     .mobile-menu {
         display: none;
         flex-direction: column;
         position: absolute;
-        top: 60px;
-        right: 10px;
+        top: 40px;
         background-color: white;
         border: 1px solid #ccc;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -458,17 +446,55 @@ nav {
         color: #333;
     }
 
+    header {
+        padding-left: 0.05rem;
+        padding-right: 0.1rem;
+    }
+
+    .div-mobile-toggle {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+    }
+
+    .logo {
+        margin: 0;
+        padding: 0;
+    }
+
     .logo-image {
-        width: 100px;
+        width: 75px;
+        height: 75px;
+    }
+
+    .search-box {
+        flex: 1;
+        margin: 0;
+        padding: 0;
+        padding-right: 1.5rem;
     }
 
     .sidebar {
         display: none;
-        /* 사이드바 숨김 */
     }
 
     .food-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .category-icons button {
+        flex: 0 0 70px;
+        height: 100px;
+        border: none;
+        background-color: #FDFCFA;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-radius: 12px;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+        transition: 0.2s ease;
     }
 
     .step-box {
@@ -482,6 +508,32 @@ nav {
     .category-icons {
         flex-wrap: wrap;
     }
+
+    .recipe-content {
+        flex-direction: column;
+    }
+
+    .left-box,
+    .right-box {
+        width: 100%;
+    }
+
+    .left-box iframe {
+        width: 100%;
+        height: auto;
+    }
+
+    .image-box {
+        width: 100%;
+        height: auto;
+    }
+
+    .section-box {
+        height: auto;
+        max-height: none;
+        overflow-y: visible;
+    }
+
 }
 
 
@@ -514,6 +566,23 @@ nav {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.iframe-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+
+.iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 
@@ -631,4 +700,3 @@ nav {
     height: 24px;
     margin-right: 10px;
 }
-
