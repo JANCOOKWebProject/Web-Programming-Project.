@@ -94,14 +94,17 @@
     <div class="container">
         <header>
             <div class="logo">
-                <a href="main.html"><img class="logo-image" src="icon-image/Logo.png" alt="잔쿡"></a>
+                <a href="main.html"><img class="logo-image" src="https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/icon-image/
+Logo.png" alt="잔쿡"></a>
             </div>
             <div class="search-box">
                 <input type="text" placeholder="재료를 넣어주세요..." />
             </div>
             <div class="icons">
-                <a href="/signup" title="회원가입"><img src="icon-image/014-add.png" alt="회원가입"></a>
-                <a href="/login" title="로그인"><img src="icon-image/015-user-1.png" alt="로그인"></a>
+                <a href="/signup" title="회원가입"><img src="https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/icon-image/
+014-add.png" alt="회원가입"></a>
+                <a href="/login" title="로그인"><img src="https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/icon-image/
+015-user-1.png" alt="로그인"></a>
             </div>
             <button class="menu-toggle">☰</button>
             <div class="mobile-menu" id="mobileMenu">
@@ -127,14 +130,22 @@
 
         <h2>15분 이내 <button class="toggle-btn">더보기 ▾</button></h2>
         <div class="food-grid">
-            <div class="food-card"><img src="food-image/kimchi-rice.jpg" alt="김치볶음밥"><p>김치볶음밥</p></div>
-            <div class="food-card"><img src="food-image/egg-cake.png" alt="계란말이"><p>계란말이</p></div>
-            <div class="food-card"><img src="food-image/kimchi-rice.jpg" alt="김치볶음밥"><p>김치볶음밥</p></div>
-            <div class="food-card"><img src="food-image/egg-cake.png" alt="계란말이"><p>계란말이</p></div>
-            <div class="food-card extra-items"><img src="food-image/kimchi-rice.jpg" alt="김치볶음밥"><p>김치볶음밥</p></div>
-            <div class="food-card extra-items"><img src="food-image/egg-cake.png" alt="계란말이"><p>계란말이</p></div>
-            <div class="food-card extra-items"><img src="food-image/kimchi-rice.jpg" alt="김치볶음밥"><p>김치볶음밥</p></div>
-            <div class="food-card extra-items"><img src="food-image/egg-cake.png" alt="계란말이"><p>계란말이</p></div>
+            <div class="food-card"><img src="https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/food-image/
+kimchi-rice.jpg" alt="김치볶음밥"><p>김치볶음밥</p></div>
+            <div class="food-card"><img src="https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/food-image/
+egg-cake.png" alt="계란말이"><p>계란말이</p></div>
+            <div class="food-card"><img src="https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/food-image/
+kimchi-rice.jpg" alt="김치볶음밥"><p>김치볶음밥</p></div>
+            <div class="food-card"><img src="https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/food-image/
+egg-cake.png" alt="계란말이"><p>계란말이</p></div>
+            <div class="food-card extra-items"><img src="https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/food-image/
+kimchi-rice.jpg" alt="김치볶음밥"><p>김치볶음밥</p></div>
+            <div class="food-card extra-items"><img src="https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/food-image/
+egg-cake.png" alt="계란말이"><p>계란말이</p></div>
+            <div class="food-card extra-items"><img src="https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/food-image/
+kimchi-rice.jpg" alt="김치볶음밥"><p>김치볶음밥</p></div>
+            <div class="food-card extra-items"><img src="https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/food-image/
+egg-cake.png" alt="계란말이"><p>계란말이</p></div>
         </div>
 
         <h2>30분 ~ 1시간 <button class="toggle-btn">더보기 ▾</button></h2>

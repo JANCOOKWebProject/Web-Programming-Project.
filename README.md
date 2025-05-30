@@ -5,7 +5,7 @@ file
 ->main
 ->recipe
 ->ingredients
-->food-image
-->icon-image
+->https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/food-image
+->https://raw.githubusercontent.com/JANCOOKWebProject/Web-Programming-Projectt/main/icon-image
 
 형태로 카톡에 올려놓은 압축파일 다운받으시길 바랍니다..!
