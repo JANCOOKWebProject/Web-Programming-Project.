@@ -1,3 +1,22 @@
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('img').forEach(img => {
+    if (img.src.includes('food-image/')) {
+      img.src = img.src.replace(
+        'food-image/',
+        'https://raw.githubusercontent.com/EehdrmsS/Web-Programming-Projectt/main/food-image/'
+      );
+    } else if (img.src.includes('icon-image/')) {
+      img.src = img.src.replace(
+        'icon-image/',
+        'https://raw.githubusercontent.com/EehdrmsS/Web-Programming-Projectt/main/icon-image/'
+      );
+    }
+  });
+});
+
+
+
+
 const foodData = [
             { name: "김치볶음밥", ingredients: ["돼지고기","밥", "김치", "앞다리살"], img: "food-image/kimchi-rice.jpg", link: "recipe.html" },
             { name: "된장찌개", ingredients: ["된장", "두부", "채소류"], img: "food-image/soybean-soup.jpg", link: "recipe.html" },
