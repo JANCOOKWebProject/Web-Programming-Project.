@@ -1,8 +1,9 @@
 # Web-Programming-Projectt
 
 main.html
-ingredients.html
+
 recipe.html
+
 cookingTime.html
 다운받아서 테스트하시면 됩니다.
 
